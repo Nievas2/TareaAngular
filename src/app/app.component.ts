@@ -8,6 +8,10 @@ import { Productos } from 'src/interface';
 export class AppComponent {
   title = 'ejercicioAngular';
   columnasTabla: string[] = ['nombre', 'costo'];
+  Visible: boolean =true;
+  MostrarOcultar:string= "Ocultar";
+  Visible2: boolean =true;
+  MostrarOcultar2:string= "Ocultar";
   arreglo = [
     {nombre:'Manzana', costos:'1200'},
     {nombre:'Naranja', costos:'1000'},
@@ -32,4 +36,22 @@ export class AppComponent {
     {nombre:'Cables', costos:'5000'},
    
 ];
+
+constructor(){
+this.OcultarMostrar();
+}
+ OcultarMostrar(){
+  if(this.Visible == false){
+    this.MostrarOcultar ="Mostrar"
+      }else{
+        this.MostrarOcultar ="Ocultar"
+      }
+ }
+ OcultarMostrar2(){
+  if(this.Visible2 == false){
+    this.MostrarOcultar2 ="Mostrar"
+      } else{
+        this.MostrarOcultar2 ="Ocultar"
+      }
+ }
 }

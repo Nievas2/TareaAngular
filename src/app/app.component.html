@@ -18,44 +18,69 @@ C (Opcional) - Que el botón sea de Angular material
 
 
 -->
-<div class="container-xl">
-  <div class="row">
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Nombres</th>
-      <th scope="col">Costos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of arreglo">
-      <th scope="row" class="border border-0">
-        <p>{{ item.nombre }}</p>
-      </th>
-      <th scope="row" class="border border-0">
-        <p>${{ item.costos }}</p>
-      </th>
-    </tr>
-  </tbody>
-</table>
-</div>
-<div class="row">
-<table mat-table [dataSource]="Productos" matSort matSortActive="nombre" matSortDirection="asc">
-  <ng-container matColumnDef="nombre">
-    <th mat-header-cell *matHeaderCellDef>Nombre</th>
-    <td mat-cell *matCellDef="let elemento">{{ elemento.nombre }}</td>
-  </ng-container>
 
-  <ng-container matColumnDef="costo">
-    <th mat-header-cell *matHeaderCellDef>Costo</th>
-    <td mat-cell *matCellDef="let elemento">{{ elemento.costos }}</td>
-  </ng-container>
+<div class="container-xl cosas" >
+  <mat-tab-group >
+    <mat-tab label="Bootstrap" >
+      <button class="btn" style="background-color: rgb(236, 43, 43)">
+        <mat-slide-toggle
+          [(ngModel)]="Visible"
+          (ngModelChange)="OcultarMostrar()"
+          >{{ MostrarOcultar }}</mat-slide-toggle
+        >
+      </button>
 
-  <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
-  <tr mat-row *matRowDef="let fila; columns: columnasTabla;"></tr>
-</table>
-</div>
+      <table class="table table-striped table-striped-columns" *ngIf="Visible" style="background-color: #6b6767;">
+        <thead>
+          <tr>
+            <th scope="col">Nombres</th>
+            <th scope="col">Costos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of arreglo">
+            <th scope="row" class="border border-0">
+              <p>{{ item.nombre }}</p>
+            </th>
+            <th scope="row" class="border border-0">
+              <p>${{ item.costos }}</p>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </mat-tab>
+    <mat-tab label="Angular Material y Interface">
+      <button class="btn" style="background-color: rgb(236, 43, 43)">
+        <mat-slide-toggle
+          [(ngModel)]="Visible2"
+          (ngModelChange)="OcultarMostrar2()"
+          >{{ MostrarOcultar2 }}</mat-slide-toggle
+        >
+      </button>
+      <div *ngIf="Visible2">
+        <table
+          mat-table
+          [dataSource]="Productos"
+          matSort
+          matSortActive="nombre"
+          matSortDirection="asc"
+        >
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.nombre }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="costo">
+            <th mat-header-cell *matHeaderCellDef>Costo</th>
+            <td mat-cell *matCellDef="let elemento">{{ elemento.costos }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+          <tr mat-row *matRowDef="let fila; columns: columnasTabla"></tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 
 <router-outlet></router-outlet>
